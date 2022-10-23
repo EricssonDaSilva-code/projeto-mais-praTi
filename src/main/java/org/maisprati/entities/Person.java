@@ -1,6 +1,5 @@
 package org.maisprati.entities;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -12,16 +11,17 @@ public class Person {
     protected String name;
     protected String phonenumber;
     protected LocalDateTime registrationdate;
-    protected LocalDate changedate;
+    protected LocalDateTime changedate;
 
     public Person() {
 
     }
 
-    public Person(String name, String phonenumber, LocalDateTime registrationdate) {
+    public Person(String name, String phonenumber, LocalDateTime registrationdate, LocalDateTime changedate) {
         this.name = name;
-        this.phonenumber = String.valueOf(phonenumber.replaceAll("[^0-9]", ""));
+        this.phonenumber = phonenumber;
         this.registrationdate = registrationdate;
+        this.changedate = changedate;
     }
 
     public String getName() {
@@ -32,7 +32,7 @@ public class Person {
         this.name = name;
     }
 
-    public String  getPhonenumber() {
+    public String getPhonenumber() {
         return phonenumber;
     }
 
@@ -48,30 +48,34 @@ public class Person {
         this.registrationdate = registrationdate;
     }
 
-    public LocalDate getChangedate() {
+    public LocalDateTime getChangedate() {
         return changedate;
     }
 
-
+    public void setChangedate(LocalDateTime changedate) {
+        this.changedate = changedate;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(name, person.name) && Objects.equals(phonenumber, person.phonenumber);
+        return Objects.equals(phonenumber, person.phonenumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phonenumber);
+        return Objects.hash(phonenumber);
     }
 
     @Override
     public String toString() {
-        return "Name = " + name + "\n"
-                + "Phone = " + phonenumber + "\n"
-                + "Registration Date = " + registrationdate;
-
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", phonenumber='" + phonenumber + '\'' +
+                ", registrationdate=" + registrationdate +
+                ", changedate=" + changedate +
+                '}';
     }
 }
