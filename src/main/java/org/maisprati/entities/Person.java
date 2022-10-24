@@ -71,11 +71,9 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", phonenumber='" + phonenumber + '\'' +
-                ", registrationdate=" + registrationdate +
-                ", changedate=" + changedate +
-                '}';
+        return "Nome: " + name +
+                ", " + "numero de telefone: " + phonenumber +
+                ", " + "data de cadastro: " + registrationdate +
+                ", " + "data de auteração: " + changedate;
     }
 }

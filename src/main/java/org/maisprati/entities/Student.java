@@ -43,13 +43,11 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", phonenumber='" + phonenumber + '\'' +
-                ", registrationdate=" + registrationdate +
-                ", changedate=" + changedate +
-                "final note" + finalNote +
-                '}';
+        return "Nome: " + name +
+                ", " + "numero de telefone: " + phonenumber +
+                ", " + "data de cadastro: " + registrationdate +
+                ", " + "data de auteração: " + changedate +
+                ", " + "nota final: " + finalNote;
     }
 
 

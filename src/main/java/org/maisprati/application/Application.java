@@ -63,9 +63,9 @@ public class Application {
 
                     //função que faz a diferenciação entre salvar Pessoa ou Aluno
                     if (finalNote != 0) {
-                        objectRepository.addPerson(newPerson);
-                    } else {
                         objectRepository.addStudent(newStudent);
+                    } else {
+                        objectRepository.addPerson(newPerson);
                     }
                     break;
 
@@ -76,16 +76,13 @@ public class Application {
                     break;
 
                 case 3:
-                    //primeiro lista os Alunos e Pessoas já criadas para o usuário saber qual destes ele deseja editar
-                    objectRepository.listStudent();
-                    objectRepository.listPerson();
                     //menu usuário escolhe se irá editar Aluno ou Pessoa
                     System.out.println("Você deseja alterar aluno ou pessoa: ");
                     String select = sc.next().toUpperCase(Locale.ROOT);
                     //função que diferencia entre aluno ou pessoa
                     if ("ALUNO".equals(select)) {
                         objectRepository.listStudent();
-                    } else if ("PERSON".equals(select)) {
+                    } else if ("PESSOA".equals(select)) {
                         objectRepository.listPerson();
                     } else {
                         option = 3;
@@ -93,9 +90,8 @@ public class Application {
                     //menu que mostra qual a opção que o usuário deseja efetuar
                     System.out.println("Informe com base na numeração, qual individuo você deseja alterar: ");
                     int num = sc.nextInt();
-                    sc.nextLine();
-                    if ("aluno".equals(select)) {
-                        Student student = (Student) objectRepository.personList.get(num - 1);
+                    if ("ALUNO".equals(select)) {
+                        Student student = (Student) objectRepository.studentList.get(num - 1);
                         System.out.println("Informe com base na numeração, qual atributo deseja alterar: ");
                         System.out.println("**********************************");
                         System.out.println("* 1 - Alterar nome               *");
@@ -103,26 +99,24 @@ public class Application {
                         System.out.println("* 3 - Alterar nota final         *");
                         System.out.println("**********************************");
                         int alterarOpcao = sc.nextInt();
-                        sc.nextLine();
                         //faz a diferenciação para a escolha de qual atributo que irá ser editado
                         if (alterarOpcao == 1) {
                             System.out.println("Nome: ");
                             name = sc.nextLine();
-                            newStudent.setName(name);
+                            student.setName(name);
                         } else if (alterarOpcao == 2) {
                             System.out.println("Telefone: ");
                             phoneNumber = sc.nextLine();
-                            newStudent.setPhonenumber(phoneNumber);
+                            student.setPhonenumber(phoneNumber);
                         } else if (alterarOpcao == 3) {
                             System.out.println("Nota final: ");
                             finalNote = sc.nextFloat();
-                            sc.nextLine();
-                            newStudent.setFinalNote(finalNote);
+                            student.setFinalNote(finalNote);
                         } else {
                             System.out.println("Digite um numero válido");
                         }
-                    } else if ("pessoa".equals(select)) {
-                        Person pessoa = (Person) objectRepository.personList.get(num - 1);
+                    } else if ("PESSOA".equals(select)) {
+                        Person person = (Person) objectRepository.personList.get(num - 1);
                         System.out.println("Informe com base na numeração, qual atributo deseja alterar: ");
                         System.out.println("**********************************");
                         System.out.println("* 1 - Alterar nome               *");
@@ -133,11 +127,11 @@ public class Application {
                         if (alterarOpcao == 1) {
                             System.out.println("Nome: ");
                             name = sc.nextLine();
-                            newPerson.setName(name);
+                            person.setName(name);
                         } else if (alterarOpcao == 2) {
                             System.out.println("Telefone: ");
                             phoneNumber = sc.nextLine();
-                            newPerson.setPhonenumber(phoneNumber);
+                            person.setPhonenumber(phoneNumber);
                         } else {
                             System.out.println("Digite um numero válido");
                         }
@@ -146,9 +140,6 @@ public class Application {
 
                     }
                 case 4:
-                    //lista todos os individuos que existem no sistema
-                    objectRepository.listStudent();
-                    objectRepository.listPerson();
                     //menu de escolha entre Aluno ou Pessoa para ser deletado
                     System.out.println("Você deseja deletar um aluno ou pessoa: ");
                     String delIndividuo = sc.next().toUpperCase();
@@ -163,11 +154,10 @@ public class Application {
                     //menu que mostra qual a opção que o usuário deseja efetuar
                     System.out.println("Informe com base na numeração, qual Aluno/Pessoa você deseja deletar: ");
                     int delNumIndividuo = sc.nextInt();
-                    sc.nextLine();
                     //função que remove o individuo escolhido
-                    if (("aluno".equals(delIndividuo)) || ("Aluno".equals(delIndividuo) || ("ALUNO".equals(delIndividuo)))) {
+                    if ("ALUNO".equals(delIndividuo)) {
                         ((Repository<?>) objectRepository).studentList.remove(delNumIndividuo - 1);
-                    } else if (("pessoa".equals(delIndividuo)) || ("Pessoa".equals(delIndividuo)) || ("PESSOA".equals(delIndividuo))) {
+                    } else if ("PESSOA".equals(delIndividuo)) {
                         objectRepository.personList.remove(delNumIndividuo - 1);
                     }
                     break;
