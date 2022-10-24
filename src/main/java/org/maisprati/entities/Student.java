@@ -1,9 +1,8 @@
 package org.maisprati.entities;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
-public class Student extends Person {
+public class Student extends Individual {
 
     private float finalNote;
 
@@ -11,9 +10,6 @@ public class Student extends Person {
 
     }
 
-    public Student(float finalNote) {
-        this.finalNote = finalNote;
-    }
 
     public Student(String name, String phonenumber, LocalDateTime registrationdate, LocalDateTime changedate, float finalNote) {
         super(name, phonenumber, registrationdate, changedate);
@@ -30,15 +26,12 @@ public class Student extends Person {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return Objects.equals(phonenumber, student.phonenumber);
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(phonenumber);
+        return super.hashCode();
     }
 
     @Override
@@ -49,6 +42,4 @@ public class Student extends Person {
                 ", " + "data de auteração: " + changedate +
                 ", " + "nota final: " + finalNote;
     }
-
-
 }

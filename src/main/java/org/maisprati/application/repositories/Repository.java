@@ -1,5 +1,6 @@
 package org.maisprati.application.repositories;
 
+import org.maisprati.entities.Individual;
 import org.maisprati.entities.Person;
 import org.maisprati.entities.Student;
 
@@ -11,8 +12,8 @@ public class Repository<T> {
     String phoneNumber;
     float finalNote;
 
-    Person newPerson = new Person();
-    Student newStudent = new Student();
+    Individual newPerson = new Person();
+    Individual newStudent = new Student();
 
     public ArrayList<Person> personList;
     public ArrayList<Student> studentList;

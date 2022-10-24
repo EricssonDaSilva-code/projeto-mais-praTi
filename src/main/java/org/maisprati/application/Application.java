@@ -1,6 +1,7 @@
 package org.maisprati.application;
 
 import org.maisprati.application.repositories.Repository;
+import org.maisprati.entities.Individual;
 import org.maisprati.entities.Person;
 import org.maisprati.entities.Student;
 
@@ -21,9 +22,9 @@ public class Application {
         LocalDateTime registrationDate, changeDate;
 
         //construtores
-        Person newPerson = new Person();
-        Student newStudent = new Student();
-        Repository objectRepository = new Repository<Person>();
+        Individual newPerson = new Person();
+        Individual newStudent = new Student();
+        Repository objectRepository = new Repository<Individual>();
 
 
         do {
@@ -63,9 +64,9 @@ public class Application {
 
                     //função que faz a diferenciação entre salvar Pessoa ou Aluno
                     if (finalNote != 0) {
-                        objectRepository.addStudent(newStudent);
+                        objectRepository.addStudent((Student) newStudent);
                     } else {
-                        objectRepository.addPerson(newPerson);
+                        objectRepository.addPerson((Person) newPerson);
                     }
                     break;
 
@@ -91,7 +92,7 @@ public class Application {
                     System.out.println("Informe com base na numeração, qual individuo você deseja alterar: ");
                     int num = sc.nextInt();
                     if ("ALUNO".equals(select)) {
-                        Student student = (Student) objectRepository.studentList.get(num - 1);
+                        Individual student = (Student) objectRepository.studentList.get(num - 1);
                         System.out.println("Informe com base na numeração, qual atributo deseja alterar: ");
                         System.out.println("**********************************");
                         System.out.println("* 1 - Alterar nome               *");
@@ -111,7 +112,7 @@ public class Application {
                         } else if (alterarOpcao == 3) {
                             System.out.println("Nota final: ");
                             finalNote = sc.nextFloat();
-                            student.setFinalNote(finalNote);
+                            ((Student) student).setFinalNote(finalNote);
                         } else {
                             System.out.println("Digite um numero válido");
                         }
