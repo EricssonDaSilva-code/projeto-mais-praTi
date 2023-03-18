@@ -74,7 +74,7 @@ public abstract class Individual {
     public String toString() {
         return "Nome: " + name +
                 ", " + "numero de telefone: " + phonenumber +
-                ", " + "data de cadastro: " + registrationdate +
-                ", " + "data de auteração: " + changedate;
+                ", " + "data de cadastro: " + registrationdate.format(dateTimeFormatter) +
+                ", " + "data de alteração: " + changedate.format(dateTimeFormatter);
     }
 }
